@@ -66,3 +66,39 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+---
+
+Using basic Create React App
+
+We are going to use 2 buckets...
+1. website208413
+1. website208413-build (all defaults)
+
+Important files in our repo:
+1. buildspec.yml (root level)
+1. Lambda handler
+
+
+CodeBuild configuration...
+1. Click on `Create new project`
+    1. Name: `my-website`
+    1. Description: `Build pipeline for my website`
+    1. Source provider: `GitHub`
+    1. Click on `Connect to Github`
+        1. Authorize
+        1. Confirm
+    1. Repository URL: `https://github.com/bunchito/cicdreact`
+    1. Environment image: `Managed image`
+    1. OS: `Ubuntu`
+    1. Runtime: `Standard`
+    1. Image: `aws/codebuild/standard:4.0`
+    1. Select `New Service Role`
+    1. Select `Use a buildspec file`
+    1. In Artifact's type, select `Amazon S3`
+        1. Bucket name: `website208413-build`
+        1. Name: `website208413-build.zip` (this will be the name of the artifact or compressed file)
+        1. Artifact packaging: `ZIP`
+    1. Click on `Create build project`
+
